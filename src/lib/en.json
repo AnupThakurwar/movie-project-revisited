@@ -1,0 +1,9 @@
+{
+    "header":{
+        "reactMovies":"React Movies",
+        "movies":"Movies",
+        "tvshows":"TV Shows",
+        "favorites":"Favorites",
+        "searchPlaceholder":"Search for movies or TV shows..."
+    }
+}
