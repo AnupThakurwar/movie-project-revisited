@@ -3,7 +3,7 @@ import { createBrowserRouter } from "react-router-dom";
 import { lazy } from "react";
 
 import BaseLayout from "./layouts/baseLayout";
-const MovieHome = lazy(() => import("@/pages/home"));
+const MovieHome = lazy(() => import("@/pages/movieHome/MovieHome"));
 
 export const router = createBrowserRouter([
   {

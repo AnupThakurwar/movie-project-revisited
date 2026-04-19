@@ -4,7 +4,7 @@ import MovieFooter from "./components/footer";
 
 const BaseLayout = () => {
   return (
-    <div>
+    <div className="bg-black">
       <header>
         <MovieHeader />
       </header>
