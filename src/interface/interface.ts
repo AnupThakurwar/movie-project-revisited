@@ -22,4 +22,31 @@ export interface MovieResponse {
   results: Movie[];
   total_pages?: number;
   total_results?: number;
+  subCategory?: string;
+}
+
+export interface TVShow {
+  id: number;
+  name: string;
+  original_name: string;
+  overview: string;
+  first_air_date: string;
+  origin_country: string[];
+  genre_ids: number[];
+  original_language: string;
+  backdrop_path: string | null;
+  poster_path: string;
+  popularity: number;
+  vote_average: number;
+  vote_count: number;
+  adult: boolean;
+  softcore?: boolean;
+}
+
+export interface TVShowResponse {
+  page: number;
+  results: TVShow[];
+  total_pages: number;
+  total_results: number;
+  subCategory: string;
 }

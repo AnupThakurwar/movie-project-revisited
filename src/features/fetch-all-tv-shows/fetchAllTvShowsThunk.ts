@@ -1,7 +1,7 @@
-import { getAllMovies } from "@/api/getAllMovies";
+import { getAllTvShows } from "@/api/getAllTvShows";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-export const fetchAllMoviesThunk = createAsyncThunk(
+export const fetchAllTvShowsThunk = createAsyncThunk(
   "movies/fetchAll",
   async (
     {
@@ -9,15 +9,16 @@ export const fetchAllMoviesThunk = createAsyncThunk(
       category,
       subCategory,
     }: { page: number; category: string; subCategory: string },
-    { rejectWithValue }
+    { rejectWithValue },
   ) => {
     try {
-      const response = await getAllMovies({ page, category, subCategory });
+      const response = await getAllTvShows({ page, category, subCategory });
+      console.log(response);
       return response;
     } catch (error: any) {
       return rejectWithValue(
-        error.response?.data?.status_message || "Failed to fetch movies"
+        error.response?.data?.status_message || "Failed to fetch movies",
       );
     }
-  }
+  },
 );

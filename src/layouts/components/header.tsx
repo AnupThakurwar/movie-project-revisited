@@ -3,7 +3,15 @@ import { Link } from "react-router-dom";
 // import PageThemeToggler from "../../Component/PageThemeToggler/pageThemeToggler";
 import { useSelector } from "react-redux";
 import type { RootState } from "@/store/store";
-import { Film, Heart, Info, ListVideo, Menu, X } from "lucide-react";
+import {
+  Film,
+  Heart,
+  Info,
+  ListVideo,
+  Menu,
+  TvMinimalPlay,
+  X,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -33,7 +41,12 @@ const MovieHeader = () => {
   // };
 
   const navLinks = [
-    { to: "/", label: "Home", icon: <Film className="w-4 h-4 mr-2" /> },
+    { to: "/", label: "Movies", icon: <Film className="w-4 h-4 mr-2" /> },
+    {
+      to: "/tvshows",
+      label: "Tv shows",
+      icon: <TvMinimalPlay className="w-4 h-4 mr-2" />,
+    },
     {
       to: "/favoritemovie",
       label: "Favorite",
@@ -89,7 +102,11 @@ const MovieHeader = () => {
 
           {/* Mobile Menu Toggle */}
           <div className="md:hidden flex items-center">
-            <Button variant="ghost" size="icon" onClick={() => navHandler()}>
+            <Button
+              variant="secondary"
+              size="icon"
+              onClick={() => navHandler()}
+            >
               {showNav ? (
                 <X className="h-6 w-6" />
               ) : (

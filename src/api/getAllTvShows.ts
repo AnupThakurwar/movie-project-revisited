@@ -1,8 +1,8 @@
 import movieApi from "@/api/apiConfig";
 
-export const getAllMovies = async ({
+export const getAllTvShows = async ({
   page = 1,
-  category = "movie",
+  category = "tv",
   subCategory = "popular",
 }: {
   page: number;

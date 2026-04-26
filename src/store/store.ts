@@ -1,12 +1,14 @@
-import fetchAllMoviesSlice from "@/features/fetchAllMovies/fetchAllMoviesSlice";
-import fetchMoviesByCollectionSlice from "@/features/fetchMoviesByCollection/FetchMoviesByCollectionSlice";
-import fetchMoviesByIdSlice from "@/features/fetchMoviesById/fetchMoviesByIdSlice";
+import fetchAllMoviesSlice from "@/features/fetch-all-movies/fetchAllMoviesSlice";
+import fetchAlltvShowsSlice from "@/features/fetch-all-tv-shows/fetchAllTvShowsSlice";
+import fetchMoviesByCollectionSlice from "@/features/fetch-movies-by-collection/FetchMoviesByCollectionSlice";
+import fetchMoviesByIdSlice from "@/features/fetch-movies-by-id/fetchMoviesByIdSlice";
 import { configureStore } from "@reduxjs/toolkit";
 
 export const store = configureStore({
   reducer: {
     // counter: counterReducer,
     fetchAllMovies: fetchAllMoviesSlice,
+    fetchAllTvShows: fetchAlltvShowsSlice,
     fetchMoviesById: fetchMoviesByIdSlice,
     fetchMovieByCollection: fetchMoviesByCollectionSlice,
   },
