@@ -14,6 +14,7 @@ import type { TVShow } from "@/interface/interface";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { getImageWithResolution } from "@/utils/utils";
 import { useEffect } from "react";
+import TvShowsHomeSkeleton from "./TvShowsHomeSkeleton";
 
 const TvShowsHome = () => {
   const dispatch = useAppDispatch();
@@ -70,14 +71,14 @@ const TvShowsHome = () => {
   return (
     <div>
       {tvShowsLoading ? (
-        <div>loading</div>
+        <TvShowsHomeSkeleton />
       ) : (
         <div className="flex flex-col gap-6 w-full px-4 md:px-10">
           {/* Featured Hero (Single Item) */}
           {allPopularTvShows.slice(0, 1).map((shows: TVShow) => {
             const originalPoster = getImageWithResolution(
               POSTER_SIZE.ORIGINAL,
-              shows?.poster_path,
+              shows?.backdrop_path ?? "",
             );
             return (
               <TvShowHero

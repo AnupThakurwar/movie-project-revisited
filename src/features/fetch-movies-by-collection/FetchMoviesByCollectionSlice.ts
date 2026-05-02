@@ -1,27 +1,15 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import { fetchMovieCollection } from "./FetchMoviesByCollectionThunk";
-
-// Define the shape of a collection part (individual movie) for better typing
-interface CollectionPart {
-  id: number;
-  title: string;
-  poster_path: string;
-  backdrop_path: string;
-  release_date: string;
-  vote_average: number;
-  overview: string;
-}
+import type { MovieCollection } from "@/interface/interface";
 
 interface CollectionState {
-  collection: any | null; // Full TMDB collection object
-  parts: CollectionPart[]; // Array of movies in the franchise
+  collection: MovieCollection | null; // Full TMDB collection object
   loading: boolean;
   error: string | null;
 }
 
 const initialState: CollectionState = {
   collection: null,
-  parts: [],
   loading: false,
   error: null,
 };
@@ -33,7 +21,6 @@ const fetchMoviesByCollectionSlice = createSlice({
     // Resets the collection state when navigating away
     resetCollection: (state) => {
       state.collection = null;
-      state.parts = [];
       state.error = null;
       state.loading = false;
     },
@@ -46,12 +33,10 @@ const fetchMoviesByCollectionSlice = createSlice({
       })
       .addCase(
         fetchMovieCollection.fulfilled,
-        (state, action: PayloadAction<any>) => {
+        (state, action: PayloadAction<MovieCollection>) => {
           state.loading = false;
           state.collection = action.payload;
-          // TMDB returns the movies in a 'parts' array
-          state.parts = action.payload?.parts || [];
-        }
+        },
       )
       .addCase(fetchMovieCollection.rejected, (state, action) => {
         state.loading = false;

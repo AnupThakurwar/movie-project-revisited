@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import type { Movie } from "@/interface/interface";
 import { Hash, Info, Play, Star } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 interface MovieHeroProps {
   movie: Movie;
@@ -8,8 +9,9 @@ interface MovieHeroProps {
 }
 
 const MovieHero = ({ movie, originalPoster }: MovieHeroProps) => {
+  const navigate = useNavigate();
   return (
-    <div className="group relative col-span-6 aspect-2/3 w-full h-80 overflow-hidden">
+    <div className="group relative col-span-6 aspect-2/3 w-full h-96 overflow-hidden">
       <section
         id="content-without-hover"
         className="absolute top-0 left-0 opacity-100 text-gray-200 grid grid-cols-2"
@@ -17,7 +19,7 @@ const MovieHero = ({ movie, originalPoster }: MovieHeroProps) => {
         {/* Container: Added flex and justify-end to push text to bottom */}
         <div
           id="first:section"
-          className="h-80 w-full bg-linear-to-tr from-black/80 via-gray-900/40 to-transparent p-6 flex flex-col justify-end gap-4"
+          className="h-96 w-full bg-linear-to-br from-black/80 via-gray-900/40 to-transparent p-6 flex flex-col justify-start gap-4"
         >
           {/* Title Area */}
           <div className="flex flex-col gap-2">
@@ -32,6 +34,7 @@ const MovieHero = ({ movie, originalPoster }: MovieHeroProps) => {
             <Button
               variant={"secondary"}
               className="min-w-32 cursor-pointer z-20"
+              onClick={() => navigate(`/movies/${movie.id}`)}
             >
               <Info />
               <span>More info</span>
@@ -47,7 +50,7 @@ const MovieHero = ({ movie, originalPoster }: MovieHeroProps) => {
         </div>
         <div
           id="second:section"
-          className="h-80 w-full bg-linear-to-tr from-black/80 via-gray-900/40 to-transparent p-6 flex flex-col justify-start items-end gap-4"
+          className="h-96 w-full bg-linear-to-bl from-black/40 via-gray-900/40 to-trasparent p-6 flex flex-col justify-start items-end gap-4"
         >
           <div className="flex gap-3">
             {/* Top 10 Badge: Fixed alignment and sizing */}
@@ -65,32 +68,6 @@ const MovieHero = ({ movie, originalPoster }: MovieHeroProps) => {
           </div>
         </div>
       </section>
-      {/* <section
-      id="content-on-hover"
-      className="absolute top-0 left-0 text-white p-1 opacity-0 grid grid-cols-2"
-    >
-      <div className="flex flex-col text-sm space-y-4">
-        <div className="font-bold text-3xl ">{movie?.original_title}</div>
-        <div>{movie?.overview}</div>
-        <div className="font-medium">Relase: {movie?.release_date}</div>
-        <div className="flex gap-3">
-          <Button
-            variant={"secondary"}
-            className="min-w-32 cursor-pointer z-20"
-          >
-            <Info />
-            <span>More info</span>
-          </Button>
-          <Button
-            variant={"secondary"}
-            className="min-w-32 cursor-pointer z-20"
-          >
-            <Play />
-            <span>Play</span>
-          </Button>
-        </div>
-      </div>
-    </section> */}
       <img
         src={originalPoster}
         alt={movie?.title}

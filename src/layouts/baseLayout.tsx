@@ -8,7 +8,7 @@ const BaseLayout = () => {
       <header>
         <MovieHeader />
       </header>
-      <main>
+      <main className="pb-6">
         <Outlet />
       </main>
       <footer>

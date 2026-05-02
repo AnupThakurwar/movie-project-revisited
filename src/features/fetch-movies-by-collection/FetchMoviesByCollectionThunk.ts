@@ -1,11 +1,16 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { getMovieCollection } from "@/api/getCollectionMovie";
+import type { MovieCollection } from "@/interface/interface";
 
-export const fetchMovieCollection = createAsyncThunk(
+export const fetchMovieCollection = createAsyncThunk<
+  MovieCollection,
+  { collectionId: string | number },
+  { rejectValue: string | any }
+>(
   "movie/collectionMovie",
   async (
     { collectionId }: { collectionId: string | number },
-    { rejectWithValue }
+    { rejectWithValue },
   ) => {
     try {
       const response = await getMovieCollection({ collectionId });
@@ -13,8 +18,8 @@ export const fetchMovieCollection = createAsyncThunk(
     } catch (error: any) {
       return rejectWithValue(
         error.response?.data?.status_message ||
-          "Error fetching movie collection"
+          "Error fetching movie collection",
       );
     }
-  }
+  },
 );

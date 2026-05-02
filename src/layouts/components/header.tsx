@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 // import PageThemeToggler from "../../Component/PageThemeToggler/pageThemeToggler";
 import { useSelector } from "react-redux";
 import type { RootState } from "@/store/store";
@@ -28,6 +28,8 @@ const MovieHeader = () => {
   const classname = document.body.className;
   const favoriteMovie = useSelector((state: RootState) => state.favMovie);
   const [showNav, setShowNav] = useState(false);
+  const activeUrl = useLocation();
+
   // const [toggleTheme, setToggleTheme] = useState(classname);
 
   const navHandler = () => {
@@ -85,7 +87,7 @@ const MovieHeader = () => {
               <Link
                 key={link.to}
                 to={link.to}
-                className="transition-colors hover:text-white text-muted-foreground flex items-center relative"
+                className={`transition-colors hover:text-white text-muted-foreground flex items-center relative ${link.to === activeUrl.pathname ? "text-white" : "text-muted-foreground"}`}
               >
                 {link.label}
                 {link.count > 0 && (

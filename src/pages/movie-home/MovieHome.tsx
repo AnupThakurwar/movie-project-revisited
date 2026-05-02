@@ -14,6 +14,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import MovieHomeSkeleton from "./MoviesHomeSkeleton";
 
 const MovieHome = () => {
   const dispatch = useAppDispatch();
@@ -69,14 +70,14 @@ const MovieHome = () => {
   return (
     <div>
       {moviesLoading ? (
-        <div>loading</div>
+        <MovieHomeSkeleton />
       ) : (
         <div className="flex flex-col gap-6 w-full px-4 md:px-10">
           {/* Featured Hero (Single Item) */}
           {allPopularMovies.slice(0, 1).map((movie: Movie) => {
             const originalPoster = getImageWithResolution(
               POSTER_SIZE.ORIGINAL,
-              movie?.poster_path,
+              movie?.backdrop_path,
             );
             return (
               <MovieHero

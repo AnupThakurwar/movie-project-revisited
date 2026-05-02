@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import type { Movie } from "@/interface/interface";
 import { Star } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 interface MovieCardProps {
   posterUrl: string;
@@ -8,8 +9,12 @@ interface MovieCardProps {
   releaseYear: string | number;
 }
 const MovieCard = ({ posterUrl, movie, releaseYear }: MovieCardProps) => {
+  const navigate = useNavigate();
   return (
-    <div className="group relative flex flex-col gap-2 cursor-pointer transition-transform duration-300 hover:scale-105">
+    <div
+      className="group relative flex flex-col gap-2 cursor-pointer transition-transform duration-300 hover:scale-105"
+      onClick={() => navigate(`/movies/${movie.id}`)}
+    >
       {/* Image Card Container */}
       <div className="relative aspect-2/3 overflow-hidden rounded-lg bg-gray-900 shadow-lg">
         <img
