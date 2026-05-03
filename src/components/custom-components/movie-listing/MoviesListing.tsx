@@ -5,19 +5,16 @@ import MovieCard from "./MovieCard";
 
 const MoviesListing = ({
   movie,
-  index,
-  page,
-  data,
 }: {
   movie: Movie;
-  index: number;
+  index?: number;
   page?: string | number;
   data?: any;
 }) => {
   // Use a medium resolution for grid cards to optimize performance
   const posterUrl = getImageWithResolution(
     POSTER_SIZE.LARGE,
-    movie?.poster_path
+    movie?.poster_path,
   );
 
   const releaseYear = movie?.release_date

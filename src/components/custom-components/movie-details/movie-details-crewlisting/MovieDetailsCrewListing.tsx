@@ -30,53 +30,48 @@ const MovieDetailsCrewListing = ({
         className="w-full relative"
       >
         <CarouselContent className="-ml-4">
-          {movieDetails?.credits.cast
-            .slice(0, 11)
-            .map((cast: Cast, index: number) => {
-              const getCastImages = getImageWithResolution(
-                POSTER_SIZE.ORIGINAL,
-                cast.profile_path,
-              );
-              return (
-                // basis-1/2 (mobile: 2 cards), basis-1/4 (tablet: 4), basis-1/6 (desktop: 6)
-                <CarouselItem
+          {movieDetails?.credits.cast.slice(0, 11).map((cast: Cast) => {
+            const getCastImages = getImageWithResolution(
+              POSTER_SIZE.ORIGINAL,
+              cast.profile_path,
+            );
+            return (
+              // basis-1/2 (mobile: 2 cards), basis-1/4 (tablet: 4), basis-1/6 (desktop: 6)
+              <CarouselItem
+                key={cast.id}
+                className="pl-4 basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/5 xl:basis-1/6"
+              >
+                <div
                   key={cast.id}
-                  className="pl-4 basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/5 xl:basis-1/6"
+                  className="min-w-37.5 h-60 bg-slate-800 rounded-xl overflow-hidden border border-slate-700 shadow-lg"
                 >
-                  <div
-                    key={cast.id}
-                    className="min-w-37.5 h-60 bg-slate-800 rounded-xl overflow-hidden border border-slate-700 shadow-lg"
-                  >
-                    {
-                      <img
-                        src={
-                          cast.profile_path !== null
-                            ? getCastImages
-                            : import.meta.env.VITE_FALLBACK_IMAGE
-                        }
-                        alt="Cast"
-                        className="w-full h-44 object-cover"
-                      />
-                    }
+                  {
+                    <img
+                      src={
+                        cast.profile_path !== null
+                          ? getCastImages
+                          : import.meta.env.VITE_FALLBACK_IMAGE
+                      }
+                      alt="Cast"
+                      className="w-full h-44 object-cover"
+                    />
+                  }
 
-                    <div className="p-3">
-                      <p
-                        className="font-bold text-sm truncate"
-                        title={cast.name}
-                      >
-                        {cast.name}
-                      </p>
-                      <p
-                        className="text-xs text-slate-400 truncate"
-                        title={cast.character}
-                      >
-                        {cast.character} ({cast.known_for_department})
-                      </p>
-                    </div>
+                  <div className="p-3">
+                    <p className="font-bold text-sm truncate" title={cast.name}>
+                      {cast.name}
+                    </p>
+                    <p
+                      className="text-xs text-slate-400 truncate"
+                      title={cast.character}
+                    >
+                      {cast.character} ({cast.known_for_department})
+                    </p>
                   </div>
-                </CarouselItem>
-              );
-            })}
+                </div>
+              </CarouselItem>
+            );
+          })}
         </CarouselContent>
 
         {/* Navigation - Hidden on small screens for better UX */}

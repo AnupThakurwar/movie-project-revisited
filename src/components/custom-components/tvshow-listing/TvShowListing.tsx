@@ -5,9 +5,6 @@ import TvShowCard from "./TvShowCard";
 
 const TvShowListing = ({
   show,
-  index,
-  page,
-  data,
 }: {
   show: TVShow;
   index: number;

@@ -1,8 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 // import PageThemeToggler from "../../Component/PageThemeToggler/pageThemeToggler";
-import { useSelector } from "react-redux";
-import type { RootState } from "@/store/store";
 import {
   Film,
   Heart,
@@ -13,7 +11,6 @@ import {
   X,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
@@ -25,8 +22,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 const MovieHeader = () => {
-  const classname = document.body.className;
-  const favoriteMovie = useSelector((state: RootState) => state.favMovie);
+  // const classname = document.body.className;
+  // const favoriteMovie = useSelector((state: RootState) => state.favMovie);
   const [showNav, setShowNav] = useState(false);
   const activeUrl = useLocation();
 
@@ -53,7 +50,7 @@ const MovieHeader = () => {
       to: "/favoritemovie",
       label: "Favorite",
       icon: <Heart className="w-4 h-4 mr-2" />,
-      count: favoriteMovie?.length,
+      // count: favoriteMovie?.length,
     },
     {
       to: "/playlist",
@@ -90,14 +87,14 @@ const MovieHeader = () => {
                 className={`transition-colors hover:text-white text-muted-foreground flex items-center relative ${link.to === activeUrl.pathname ? "text-white" : "text-muted-foreground"}`}
               >
                 {link.label}
-                {link.count > 0 && (
+                {/* {link.count > 0 && (
                   <Badge
                     variant="destructive"
                     className="ml-1 px-1.5 py-0.5 text-[10px] h-4 min-w-4 flex items-center justify-center"
                   >
                     {link.count}
                   </Badge>
-                )}
+                )} */}
               </Link>
             ))}
           </nav>
@@ -160,11 +157,11 @@ const MovieHeader = () => {
             >
               {link.icon}
               {link.label}
-              {link.count > 0 && (
+              {/* {link.count > 0 && (
                 <Badge variant="destructive" className="ml-auto">
                   {link.count}
                 </Badge>
-              )}
+              )} */}
             </Link>
           ))}
         </div>

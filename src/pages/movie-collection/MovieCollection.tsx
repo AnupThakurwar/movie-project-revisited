@@ -1,6 +1,5 @@
 import MovieCollectionCast from "@/components/custom-components/movie-collection/movie-collection-hero/MovieCollectionCast";
 import MovieCollectionHero from "@/components/custom-components/movie-collection/movie-collection-hero/MovieCollectionHero";
-import MovieDetailsHero from "@/components/custom-components/movie-details/movie-details-hero/MovieDetailsHero";
 import { POSTER_SIZE } from "@/constants/constants";
 import { fetchMovieCollection } from "@/features/fetch-movies-by-collection/FetchMoviesByCollectionThunk";
 import { fetchMoviesByIdThunk } from "@/features/fetch-movies-by-id/fetchMoviesByIdThunk";
