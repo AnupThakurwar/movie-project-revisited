@@ -45,7 +45,7 @@ const MovieDetailsCrewListing = ({
                 >
                   <div
                     key={cast.id}
-                    className="min-w-37.5 bg-slate-800 rounded-xl overflow-hidden border border-slate-700 shadow-lg"
+                    className="min-w-37.5 h-60 bg-slate-800 rounded-xl overflow-hidden border border-slate-700 shadow-lg"
                   >
                     {
                       <img
@@ -60,8 +60,16 @@ const MovieDetailsCrewListing = ({
                     }
 
                     <div className="p-3">
-                      <p className="font-bold text-sm">{cast.name}</p>
-                      <p className="text-xs text-slate-400">
+                      <p
+                        className="font-bold text-sm truncate"
+                        title={cast.name}
+                      >
+                        {cast.name}
+                      </p>
+                      <p
+                        className="text-xs text-slate-400 truncate"
+                        title={cast.character}
+                      >
                         {cast.character} ({cast.known_for_department})
                       </p>
                     </div>

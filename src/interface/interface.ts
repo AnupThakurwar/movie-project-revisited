@@ -78,10 +78,37 @@ export interface MovieDetail {
   tagline: string;
   title: string;
   video: boolean;
+  videos: VideoResponse;
   vote_average: number;
   vote_count: number;
   releases: Releases;
   images: Images;
+}
+
+export interface MovieVideo {
+  iso_639_1: string;
+  iso_3166_1: string;
+  name: string;
+  key: string;
+  site: string;
+  size: number;
+  type: VideoType;
+  official: boolean;
+  id: string;
+  published_at: string;
+}
+
+export type VideoType =
+  | "Trailer"
+  | "Teaser"
+  | "Clip"
+  | "Featurette"
+  | "Behind the Scenes"
+  | "Bloopers";
+
+export interface VideoResponse {
+  id: number;
+  results: MovieVideo[];
 }
 
 export interface Cast {

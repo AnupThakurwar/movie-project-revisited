@@ -70,7 +70,7 @@ const MovieDetails = () => {
   return movieDetailsLoading ? (
     <MovieDetailsSkeleton />
   ) : (
-    <div className="min-h-screen bg-slate-900 text-white font-sans p-2">
+    <div className="min-h-screen bg-slate-900 text-white font-sans">
       <main>
         {/* Hero Section / Details */}
         <MovieDetailsHero

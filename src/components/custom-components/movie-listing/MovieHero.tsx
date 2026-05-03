@@ -1,7 +1,11 @@
 import { Button } from "@/components/ui/button";
+import { fetchMoviesByIdThunk } from "@/features/fetch-movies-by-id/fetchMoviesByIdThunk";
 import type { Movie } from "@/interface/interface";
-import { Hash, Info, Play, Star } from "lucide-react";
+import { useAppDispatch, useAppSelector } from "@/store/hook";
+import { Hash, Info, Link, Play, Star } from "lucide-react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import PlayTrailer from "../movie-play-trailer/PlayTrailer";
 
 interface MovieHeroProps {
   movie: Movie;
@@ -10,6 +14,21 @@ interface MovieHeroProps {
 
 const MovieHero = ({ movie, originalPoster }: MovieHeroProps) => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const [showTrailer, setShowTrailer] = useState(false);
+  const { movie: movieDetails } = useAppSelector(
+    (state) => state.fetchMoviesById,
+  );
+
+  useEffect(() => {
+    if (movie) {
+      const getMovieDetails = async () => {
+        await dispatch(fetchMoviesByIdThunk({ id: movie.id }));
+      };
+      getMovieDetails();
+    }
+  }, [movie]);
+
   return (
     <div className="group relative col-span-6 aspect-2/3 w-full h-96 overflow-hidden">
       <section
@@ -23,8 +42,16 @@ const MovieHero = ({ movie, originalPoster }: MovieHeroProps) => {
         >
           {/* Title Area */}
           <div className="flex flex-col gap-2">
-            <h1 className="font-extrabold text-4xl md:text-5xl tracking-tight text-white drop-shadow-md">
-              {movie.title}
+            <h1 className="font-extrabold text-4xl md:text-5xl tracking-tight text-white drop-shadow-md flex gap-3 items-end">
+              {movie.title}{" "}
+              <Button
+                variant={"destructive"}
+                className="p-2 hover:cursor-pointer hover:scale-105"
+                onClick={() => window.open(movieDetails?.homepage, "_blank")}
+                title="home page"
+              >
+                {<Link className="size-6" />}
+              </Button>
             </h1>
             {/* Optional: Add the Separator or a line here if needed */}
             <div className="h-1 w-20 bg-red-600 rounded-full" />
@@ -35,6 +62,7 @@ const MovieHero = ({ movie, originalPoster }: MovieHeroProps) => {
               variant={"secondary"}
               className="min-w-32 cursor-pointer z-20"
               onClick={() => navigate(`/movies/${movie.id}`)}
+              title="movie details"
             >
               <Info />
               <span>More info</span>
@@ -42,6 +70,8 @@ const MovieHero = ({ movie, originalPoster }: MovieHeroProps) => {
             <Button
               variant={"secondary"}
               className="min-w-32 cursor-pointer z-20"
+              onClick={() => setShowTrailer(true)}
+              title="play trailer"
             >
               <Play />
               <span>Play</span>
@@ -73,6 +103,11 @@ const MovieHero = ({ movie, originalPoster }: MovieHeroProps) => {
         alt={movie?.title}
         className="h-full w-full object-cover transition-opacity duration-300"
         loading="lazy"
+      />
+      <PlayTrailer
+        showTrailer={showTrailer}
+        setShowTrailer={setShowTrailer}
+        movieDetails={movieDetails}
       />
     </div>
   );
